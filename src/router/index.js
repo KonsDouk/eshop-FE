@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProductLandingPage from '../components/ProductLandingPage.vue'
+import WriteNewComponent from '../components/WriteNewComponent.vue'
 
 
 const routes = [
@@ -18,9 +18,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/landing-page',
-    name: 'landing_page',
-    component: ProductLandingPage
+    path: '/test',
+    name: 'test',
+    component: WriteNewComponent
   },
 ]
 

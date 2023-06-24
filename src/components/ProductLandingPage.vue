@@ -1,8 +1,8 @@
 <template>
     <div><!-- Το div πρέπει να τα περιέχει όλα -->
-        <div class="product-title">
+        <!-- <div class="product-title">
             <h3>{{ this.productObject.productName }}</h3>
-        </div>
+        </div> -->
 
         <div class="product-order-container">
             <div>
@@ -10,10 +10,7 @@
                     <img class="img" :src="require(`../../public/images/${this.showSelectedImage}.jpg`)" alt="test product">
                 </div>
                 <div class="more-imgs">
-                    <img class="smaller-imgs" src="../../public/images/img1.jpg" alt="img1" @click="changeMainImage">
-                    <img class="smaller-imgs" src="../../public/images/img2.jpg" alt="img2" @click="changeMainImage">
-                    <img class="smaller-imgs" src="../../public/images/img3.jpg" alt="img3" @click="changeMainImage">
-                    <img class="smaller-imgs" src="../../public/images/img4.jpg" alt="img4" @click="changeMainImage">
+                    <img class="smaller-imgs" v-for="(image, index) in productImages" :key='index' :src="require(`../../public/images/${image}.jpg`)" alt="" @click="changeMainImage(image)">
                 </div>
             </div>
 
@@ -22,7 +19,8 @@
                     <p>{{  this.productObject.productPrice}} €</p>
                 </div>
                 <div class="product-availability">
-                    <p>Διαθεσιμότητα: {{ (this.productObject.availableQty > 0) ? 'Άμεσα διαθέσιμο' : 'Κατόπιν παραγγελίας' }}</p>
+                    <div v-if="this.productObject.availableQty >0"><span  ><i class="bi bi-check-lg"></i></span> <span>{{ this.productAvailabilty }}</span></div>
+                    <div v-else><span><i class="bi bi-x-lg"></i></span> <span>{{ this.productAvailabilty }}</span></div>
                 </div>
 
                 <div class="quantity-controls">
@@ -30,7 +28,7 @@
                         <button class="quantity-btns" :disabled="productQuantity < 2" @click="decreaseProductQuantity"><i class="bi bi-dash"></i></button>
                     </span>
                     <span>
-                        <input class="quantity-input-field" type="number" v-model="productQuantity" @blur="checkForNegative">
+                        <input class="quantity-input-field" type="number" v-model="productQuantity">
                     </span>
                     <span class="order-quantity">
                         <button class="quantity-btns" @click="increaseProductQuantity"> <i class="bi bi-plus"></i> </button>
@@ -46,33 +44,56 @@
             <span class="tabs" @click="showDescription"><button>Περιγραφή</button></span>
             <span class="tabs" @click="showCharacteristics"><button>Χαρακτηριστικά</button></span>
             <div class="product-description-text" v-if="this.descriptionFlag">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?</p>
+                <p>{{ this.productObject.productDescription }}</p>
             </div>
+
             <div class="characteristics" v-if="this.characteristicsFlag">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!</p>
+                <p>{{ this.productObject.productCharacteristics }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
+    components: {
+        
+    },
     props: {
         productObject: {
             required: true,
-            type: Object
+            type: Object,
+        },
+        //Οι εικόνες θα είναι αποθηκευμένες στην βάση ως string με μορφή productId_img1|productId_img2|productId_img3... και θα παίρνει την εικόνα από τον φάκελο public/images
+        productImages: {
+            required: false,
+            type: Array,
         }
     },
     data(){
         return {
             productQuantity: 5,
-            showSelectedImage: 'img1',
+            showSelectedImage: this.productObject.productId + '_img1',
             descriptionFlag : true,
             characteristicsFlag: false,
+            productAvailabilty: null,
+            availabilityIcon: null,
+
         }
     },
     mounted(){
-        console.log(this.productObject)
+        console.log(this.productImages)
+        if (this.productObject.availableQty > 0){
+            this.availabilityIcon = `<i class="bi bi-check-lg"></i>`
+            this.productAvailabilty = 'Άμεσα διαθέσιμο'
+        }
+        else {
+            this.availabilityIcon = `<i class="bi bi-x"></i>`
+            this.productAvailabilty = 'Κατόπιν παραγγελίας'
+        }
+        
+        
     },
     methods: {
         increaseProductQuantity(){
@@ -82,8 +103,7 @@ export default {
             this.productQuantity--
         },
         changeMainImage(x){
-            //Πατέντα! Να παίρνει το όνομα από την βάση και με εκείνο να επιλέγει την εικόνα που θα φαίνεται
-            this.showSelectedImage = x.target.alt
+            this.showSelectedImage = x
         },
         showDescription(){
             this.characteristicsFlag = false
@@ -92,7 +112,7 @@ export default {
         showCharacteristics(){
             this.descriptionFlag = false
             this.characteristicsFlag = true
-        }
+        },
         
     },
     watch: {
@@ -142,7 +162,7 @@ input[type=number] {
     width:35em;
     height:25em;
     margin: auto;
-    border:solid 1px red;
+    /* border:solid 1px red; */
 }
 
 .quantity-btns {
