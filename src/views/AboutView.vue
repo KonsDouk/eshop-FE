@@ -36,14 +36,28 @@ export default {
         productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
       },
       customers: {
-        customerId: 1,
-        fName: 'John',
-        lName: 'Doe',
-        email: 'john@doe.com',
-        phone: '123450987',
-        cellPhone: '6911223344',
-        address: 'Pantou Meno',
-        streetNo: '22',
+        1: {
+          customerId: 1,
+          fName: 'John',
+          lName: 'Doe',
+          email: 'john@doe.com',
+          phone: '123450987',
+          cellPhone: '6911223344',
+          address: 'Pantou Meno',
+          streetNo: '22',
+
+        },
+        2: {
+          customerId: 2,
+          fName: 'Jane',
+          lName: 'Doe',
+          email: 'jane@doe.com',
+          phone: '7654321',
+          cellPhone: '6911223344',
+          address: 'Edo Meno',
+          streetNo: '33',
+
+        }
       },
       productImages: []
     }
