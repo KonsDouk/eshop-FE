@@ -1,23 +1,28 @@
 <template>
   <DefaultWrapper
-    :title="this.product.productName"
+    
   >
     <div>
-        <ProductLandingPage
+        <!-- <ProductLandingPage
         :productObject="product"
         :productImages="productImages"
+        /> -->
+        <TableComponent
+          :customerData="customers"
         />
     </div>
   </DefaultWrapper>
 </template>
 
 <script>
-import ProductLandingPage from '@/components/ProductLandingPage.vue';
+// import ProductLandingPage from '@/components/ProductLandingPage.vue';
 import DefaultWrapper from '../components/DefaultWrapper.vue'
+import TableComponent from '../components/TableComponent.vue'
 export default {
   components: {
-    ProductLandingPage,
+    // ProductLandingPage,
     DefaultWrapper,
+    TableComponent,
   },
 
   data(){
@@ -29,6 +34,16 @@ export default {
         availableQty: 100,
         productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
         productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
+      },
+      customers: {
+        customerId: 1,
+        fName: 'John',
+        lName: 'Doe',
+        email: 'john@doe.com',
+        phone: '123450987',
+        cellPhone: '6911223344',
+        address: 'Pantou Meno',
+        streetNo: '22',
       },
       productImages: []
     }
