@@ -8,7 +8,7 @@
         :productImages="productImages"
         /> -->
         <TableComponent
-          :customerData="customers"
+          :dataSource="customers"
         />
     </div>
   </DefaultWrapper>
@@ -35,8 +35,8 @@ export default {
         productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
         productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
       },
-      customers: {
-        1: {
+      customers: [
+        {
           customerId: 1,
           fName: 'John',
           lName: 'Doe',
@@ -45,9 +45,10 @@ export default {
           cellPhone: '6911223344',
           address: 'Pantou Meno',
           streetNo: '22',
+          isActive: true
 
         },
-        2: {
+        {
           customerId: 2,
           fName: 'Jane',
           lName: 'Doe',
@@ -56,9 +57,9 @@ export default {
           cellPhone: '6911223344',
           address: 'Edo Meno',
           streetNo: '33',
-
+          isActive: false
         }
-      },
+      ],
       productImages: []
     }
   },

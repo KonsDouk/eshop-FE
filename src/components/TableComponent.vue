@@ -2,10 +2,10 @@
   <div>
     <table style="border: solid 1px black; margin: auto;">
         <tr style="border: solid 2px black;" >
-            <th v-for="(columns, index) in this.tableHeaders" :key="index" style="border:solid 2px black; padding: 0.5em">{{ columns }}</th>
+            <th class="table-header" v-for="(columns, index) in this.tableHeaders" :key="index" >{{ columns }}</th>
         </tr>
-        <tr v-for="(items, index) in this.tableRows" :key="index" style="solid 1px black;" @click="test(this.customerData[items])">
-            <td v-for="(columnData, index) in this.customerData[items]" :key="index" style="border:solid 1px black; padding: 0.5em;">{{ columnData }}</td>
+        <tr class="table-data-row"  v-for="(items, index) in this.dataSource" :key="index" style="solid 1px black;" @click="showRowDetails(items)">
+            <td class="table-data" v-for="(columnData, index) in items" :key="index" >{{ columnData }}</td>
         </tr>
     </table>
   </div>
@@ -17,30 +17,31 @@ export default {
 
     },
     props: {
-        customerData: {
+        dataSource: {
             required: false,
             type: Object,
         }
     },
     data(){
         return {
-            tableRows: [],
-            tabledata: [],
+            tableRows: null,
+            tabledata: null,
             tableHeaders: null,
         }
     },
     mounted(){
-        this.tableRows = Object.keys(this.customerData)
-        this.tableData = Object.values(this.customerData)
-        console.log('customerData', this.customerData)
+        this.tableRows = Object.keys(this.dataSource)
+        this.tableData = Object.values(this.dataSource)
+        console.log('dataSource', this.dataSource)
         console.log('tableRows', this.tableRows)
 
         //if (klisi === customers){
-            this.tableHeaders = ['ID', 'Όνομα', 'Επώνυμο', 'Email', 'Phone', 'Cellphone', 'Adress', 'Number']
+            this.tableHeaders = ['ID', 'Όνομα', 'Επώνυμο', 'Email', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive']
         //} else { ανάλογα με το τι θα δείχνουμε}
     },
     methods: {
-        test(x){
+        showRowDetails(x){
+            //Θα πηγαίνει σε νέα σελίδα που θα δείχνει λεπτομέρειες για το επιλεγμένο στοιχείο
             console.log(x.customerId)
         }
     }
@@ -48,5 +49,21 @@ export default {
 </script>
 
 <style scoped>
+.table-header {
+    border:solid 2px black;
+    padding: 0.5em;
+}
+.table-header:hover {
+    background-color:lightgray;
+    cursor:pointer;
+}
 
+.table-data {
+    border:solid 1px black; 
+    padding: 0.5em;
+}
+.table-data-row:hover {
+    background-color: lightgray;
+    cursor:pointer;
+}
 </style>
