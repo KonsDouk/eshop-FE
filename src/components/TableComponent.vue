@@ -24,6 +24,7 @@
 <script>
 import DefaultWrapper from '@/components/DefaultWrapper.vue'
 import {v4 as uuidv4} from 'uuid'
+import axios from 'axios'
 
 export default {
     components: {
@@ -46,7 +47,10 @@ export default {
             refreshKey: uuidv4(),
         }
     },
-    mounted(){
+    async mounted(){
+        let x = axios.get("/api/test")
+        //Route::get('/test', 'App\Http\Controllers\Controller@test');
+        console.log(x)
         this.tableRows = Object.keys(this.dataSource)
         this.tableData = Object.values(this.dataSource)
         console.log('dataSource', this.dataSource)
