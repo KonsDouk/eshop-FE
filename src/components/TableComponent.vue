@@ -48,7 +48,7 @@ export default {
         }
     },
     async mounted(){
-        let x = axios.get("/api/test")
+        let x = axios.get("/api/testing")
         //Route::get('/test', 'App\Http\Controllers\Controller@test');
         console.log(x)
         this.tableRows = Object.keys(this.dataSource)
