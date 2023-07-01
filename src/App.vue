@@ -1,11 +1,17 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/test">Test</router-link>
-
+  <nav class="nav-bar">
+      <router-link to="/">Home</router-link>
+    <div>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/product-card">Test</router-link>
+    </div>
+    <router-link to="/user-profile">Profile</router-link>
+    
   </nav>
-  <router-view/>
+  <div class="page">
+    <router-view/>
+
+  </div>
 </template>
 
 <style>
@@ -17,8 +23,19 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+.nav-bar {
+  display:flex;
+  justify-content: space-between;
+  position:fixed;
+  z-index: 1000;
+  width:100%;
+  margin-bottom:2em;
+  padding: 1em;
+  border-bottom:solid 1px black;
+  background-color: #0b8af4;
+}
+.page {
+  padding-top:5em;
 }
 
 nav a {
@@ -27,6 +44,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: white;
+  /* color: #42b983; */
 }
 </style>
