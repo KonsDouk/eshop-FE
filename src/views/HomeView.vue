@@ -85,6 +85,11 @@ export default {
   async mounted(){
     // let x = axios.get('/api/customers')
     // console.log("x", x)
+  },
+  methods: {
+    // goToLandingPage(){
+    //   console.log("Hello")
+    // }
   }
 }
 </script>

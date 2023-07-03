@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import WriteNewComponent from '../components/WriteNewComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
+import ProductLandingPage from '../components/ProductLandingPage.vue'
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     path: '/product-card',
     name: 'product_card',
     component: ProductCard
+  },
+
+  {
+    path: '/product-landing-page',
+    name: 'product_landing_page',
+    component: ProductLandingPage
   },
 
 ]

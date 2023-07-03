@@ -1,16 +1,16 @@
 <template>
     <div class="container">
-        <div class="product-image">
+        <div class="product-image" @click="goToLandingPage">
             <img :src="require(`../../public/images/${this.productData.img}.jpg`)" alt="product-image">
         </div>
-        <div class="price">
+        <div class="price" @click="goToLandingPage">
             Τιμή: {{ this.productData.productPrice }}€
             <p class="available" v-if="this.productData.availableQty > 5">Διαθέσιμο για παραγγελία</p>
             <p class="unavailable" v-if="this.productData.availableQty <= 5">Κατόπιν παραγγελίας</p>
         </div>
         <div class="btns">
-            <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" ><i class="bi bi-card-checklist"></i></button></span>
-            <span style="margin: 0 2em;"> <button type="button" class="btn btn-success" ><i class="bi bi-cart-plus"></i></button></span>
+            <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" @click="addToWishList"><i class="bi bi-card-checklist"></i></button></span>
+            <span style="margin: 0 2em;"> <button type="button" class="btn btn-success" @click="addToCart"><i class="bi bi-cart-plus"></i></button></span>
         </div>
     </div>
 </template>
@@ -31,6 +31,18 @@ export default {
 
     mounted(){
         console.log("sdfsdf", this.productData)
+    },
+    methods: {
+        goToLandingPage(){
+            console.log("to landing page")
+            this.$router.push('product_landing_page', this.productData.productId)
+        },
+        addToWishList(){
+            console.log("wish")
+        },
+        addToCart(){
+            console.log("cart")
+        }
     }
 
 }
@@ -42,6 +54,7 @@ export default {
     min-height: 1em;
     width:15vw;
     margin: auto; 
+    cursor:pointer;
 }
 
 .product-image >img {
