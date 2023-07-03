@@ -9,8 +9,8 @@
             <p class="unavailable" v-if="this.productData.availableQty <= 5">Κατόπιν παραγγελίας</p>
         </div>
         <div class="btns">
-            <button type="button" class="btn btn-primary" ><i class="bi bi-card-checklist"></i></button>
-            <button type="button" class="btn btn-success" ><i class="bi bi-cart-plus"></i></button>
+            <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" ><i class="bi bi-card-checklist"></i></button></span>
+            <span style="margin: 0 2em;"> <button type="button" class="btn btn-success" ><i class="bi bi-cart-plus"></i></button></span>
         </div>
     </div>
 </template>
@@ -39,32 +39,19 @@ export default {
 <style scoped>
 .container {
     border: solid 1px cyan;
-    max-width: 50em;
-    min-width:1em;
     min-height: 1em;
-    width:15em;
+    width:15vw;
     margin: auto; 
 }
-.product-image {
-    
-}
+
 .product-image >img {
     width:100%;
-    height:100%;
+    max-height: 9em;
     object-fit: contain;
-    /* max-width: 50em;
-    min-width:1em;
-    max-height: 50em;
-    min-height: 1em;
-    width:35em;
-    height:25em;
-    margin: auto; */
 }
 
 .btns {
-    display:flex;
-    justify-content:space-around;
-    margin: 0.5em;
+    margin: 0.5em auto;
 }
 
 .price {

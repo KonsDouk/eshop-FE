@@ -18,6 +18,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import ProductCard from '../components/ProductCard.vue'
+// import axios from 'axios'
 export default {
   name: 'HomeView',
   components: {
@@ -80,17 +81,20 @@ export default {
     
       ],
     }
+  },
+  async mounted(){
+    // let x = axios.get('/api/customers')
+    // console.log("x", x)
   }
 }
 </script>
 
 <style scoped>
 .container {
-  width:100%;
-  height:100%;
   display:flex;
   flex-direction: row;
   margin: auto;
+  flex-wrap: wrap;
 }
 
 .home {

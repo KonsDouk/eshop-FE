@@ -34,38 +34,7 @@ export default {
 
   data(){
     return {
-      product: [
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img1',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img2',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img3',
-        },
-        {
+      product: {
           productCategory: 5,
           productId: 26,
           productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
@@ -75,8 +44,49 @@ export default {
           productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
           img: '1_img4',
         },
+      // product: [
+      //   {
+      //     productCategory: 5,
+      //     productId: 26,
+      //     productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
+      //     productPrice: 15000,
+      //     availableQty: 100,
+      //     productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
+      //     productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
+      //     img: '1_img1',
+      //   },
+      //   {
+      //     productCategory: 5,
+      //     productId: 26,
+      //     productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
+      //     productPrice: 15000,
+      //     availableQty: 100,
+      //     productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
+      //     productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
+      //     img: '1_img2',
+      //   },
+      //   {
+      //     productCategory: 5,
+      //     productId: 26,
+      //     productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
+      //     productPrice: 15000,
+      //     availableQty: 100,
+      //     productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
+      //     productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
+      //     img: '1_img3',
+      //   },
+      //   {
+      //     productCategory: 5,
+      //     productId: 26,
+      //     productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
+      //     productPrice: 15000,
+      //     availableQty: 100,
+      //     productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
+      //     productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
+      //     img: '1_img4',
+      //   },
     
-      ],
+      // ],
       customers: [
         {
           customerId: 1,
