@@ -1,79 +1,69 @@
 <template>
   <div class="container">
     <DefaultWrapper>
-    <div class="control-icons" :key="refreshKey">
+    <div class="control-icons" v-if="this.dataSource">
         <i class="bi bi-toggles2 column-button" @click="toggleSideboard"></i>
-        <table style="margin: auto; border:solid; width:100%;">
-            <tr style="border: solid 2px black;" >
-                <th class="table-header" v-for="(columns, index) in this.tableHeaders" :key="index" >{{ columns }}</th>
-            </tr>
-            <tr class="table-data-row"  v-for="(items, index) in this.dataSource" :key="index" style="solid 1px black;" @click="showRowDetails(items)">
-                <td class="table-data" v-for="(columnData, index) in items" :key="index" >{{ columnData }}</td>
-            </tr>
-        </table>
+        <DataTableComponent
+            :dataSource="dataSource"
+            :headers="tableHeaders"
+            :key="refreshKey"
+        >
+        </DataTableComponent>
     </div>
     </DefaultWrapper>
-    <div class="sideboard" v-if="this.sideBoard">
-        <div class="sideboard-elements" v-for="(items, index) in this.hiddenColumns" :key="index" @click="insertColumn(items)">
-            {{ items }}
-        </div>
-    </div>
   </div>
 </template>
 
 <script>
 import DefaultWrapper from '@/components/DefaultWrapper.vue'
 import {v4 as uuidv4} from 'uuid'
-import axios from 'axios'
+import DataTableComponent from './DataTableComponent.vue'
 
 export default {
     components: {
         DefaultWrapper,
+        DataTableComponent,
         
     },
     props: {
         dataSource: {
             required: false,
-            type: Object,
+            type: Array,
+        },
+        tableHeaders: {
+            required: true,
+            type: Array
         }
     },
     data(){
         return {
             tableRows: null,
             tabledata: null,
-            tableHeaders: null,
+            customerHeaders: null,
             sideBoard: false,
-            hiddenColumns: null,
             refreshKey: uuidv4(),
         }
     },
     async mounted(){
-        let x = axios.get("/api/testing")
-        //Route::get('/test', 'App\Http\Controllers\Controller@test');
-        console.log(x)
         this.tableRows = Object.keys(this.dataSource)
         this.tableData = Object.values(this.dataSource)
-        console.log('dataSource', this.dataSource)
-        console.log('tableRows', this.tableRows)
 
-        //if (klisi === customers){
-            this.tableHeaders = ['ID', 'Όνομα', 'Επώνυμο', 'Email', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive']
-            this.hiddenColumns =  ['Adress', 'Number', 'IsActive']
-        //} else { ανάλογα με το τι θα δείχνουμε}
+        console.log('tableHeaders', this.tableHeaders)
+        
     },
     methods: {
         showRowDetails(x){
             //Θα πηγαίνει σε νέα σελίδα που θα δείχνει λεπτομέρειες για το επιλεγμένο στοιχείο
-            console.log(x.customerId)
+            x
         },
         toggleSideboard(){
             this.sideBoard = !this.sideBoard
         },
         insertColumn(x){
-            this.tableHeaders.push(x)
-            this.hiddenColumns.splice(this.hiddenColumns.indexOf(x), 1)
+            this.customerHeaders.push(x)
+            this.hiddenCustomerColumns.splice(this.hiddenCustomerColumns.indexOf(x), 1)
             this.refreshKey = uuidv4()
-            console.log(this.tableHeaders)
+            
         }
     }
 }

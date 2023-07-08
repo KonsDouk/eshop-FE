@@ -74,7 +74,7 @@ export default {
     data(){
         return {
             productQuantity: 5,
-            showSelectedImage: this.productObject.productId + '_img1',
+            showSelectedImage: /*this.productObject.productId +*/ '1_img1',
             descriptionFlag : true,
             characteristicsFlag: false,
             productAvailabilty: null,
@@ -83,7 +83,8 @@ export default {
         }
     },
     mounted(){
-        console.log(this.productImages)
+        // console.log('productObject', this.productObject)
+        // console.log('productImages', this.productImages)
         if (this.productObject.availableQty > 0){
             this.availabilityIcon = `<i class="bi bi-check-lg"></i>`
             this.productAvailabilty = 'Άμεσα διαθέσιμο'

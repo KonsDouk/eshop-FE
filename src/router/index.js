@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import WriteNewComponent from '../components/WriteNewComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
 import ProductLandingPage from '../components/ProductLandingPage.vue'
+import CustomersView from '../views/CustomersView.vue'
 
 const routes = [
   {
@@ -37,6 +38,14 @@ const routes = [
     name: 'product_landing_page',
     component: ProductLandingPage
   },
+  
+  {
+    path: '/customers',
+    name: 'customers',
+    component: CustomersView
+  },
+
+
 
 ]
 

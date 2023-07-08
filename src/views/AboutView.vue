@@ -3,13 +3,14 @@
     
   >
     <div>
-        <!-- <ProductLandingPage
+        <img v-if="this.photo" :key="this.refreshKey" :src="this.photo" alt="test">
+        <ProductLandingPage
         :productObject="product"
         :productImages="productImages"
-        /> -->
-        <!-- <TableComponent
+        />
+        <TableComponent
           :dataSource="customers"
-        /> -->
+        />
         <ProductCard
           :productData="product"
         >
@@ -20,15 +21,17 @@
 </template>
 
 <script>
-// import ProductLandingPage from '@/components/ProductLandingPage.vue';
+import ProductLandingPage from '@/components/ProductLandingPage.vue';
 import DefaultWrapper from '../components/DefaultWrapper.vue'
-// import TableComponent from '../components/TableComponent.vue'
+import TableComponent from '../components/TableComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
+import {v4 as uuidv4} from 'uuid'
+// import axios from 'axios'
 export default {
   components: {
-    // ProductLandingPage,
+    ProductLandingPage,
     DefaultWrapper,
-    // TableComponent,
+    TableComponent,
     ProductCard,
   },
 
@@ -113,6 +116,8 @@ export default {
         }
       ],
       productImages: [],
+      photo: null,
+      refreshKey:uuidv4(),
 
       
 
@@ -120,6 +125,22 @@ export default {
   },
 
   async mounted(){
+    // let x = await axios.get('/api/customers')
+    // console.log("x orders", x)
+
+    // let y = await axios.get('/api/products')
+    // console.log('y products', y )
+
+    // await axios.get('/api/products_photos')
+    // .then((response) => {
+    //   this.photo = 'localhost:80/' +response.data[0].src
+    //   console.log("response", response)
+    //   console.log("this.photo", this.photo)
+    //   console.log('z photos', response)
+    //   this.refreshKey = uuidv4()
+    // })
+
+
     //this.productImages = this.imagesFromCall.split('|')
     this.productImages = ['1_img1', '1_img2', '1_img3', '1_img4']
   }

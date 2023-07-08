@@ -30,18 +30,18 @@ export default {
     },
 
     mounted(){
-        console.log("sdfsdf", this.productData)
+        // console.log("sdfsdf", this.productData)
     },
     methods: {
         goToLandingPage(){
-            console.log("to landing page")
+            
             this.$router.push('product_landing_page', this.productData.productId)
         },
         addToWishList(){
-            console.log("wish")
+            
         },
         addToCart(){
-            console.log("cart")
+            
         }
     }
 
@@ -55,6 +55,7 @@ export default {
     width:15vw;
     margin: auto; 
     cursor:pointer;
+    /* margin:auto; */
 }
 
 .product-image >img {
