@@ -1,28 +1,28 @@
 <template>
   <div class="container">
-    <DefaultWrapper>
-    <div class="control-icons" v-if="this.dataSource">
-        <i class="bi bi-toggles2 column-button" @click="toggleSideboard"></i>
-        <DataTableComponent
-            :dataSource="dataSource"
-            :headers="tableHeaders"
-            :key="refreshKey"
-        >
-        </DataTableComponent>
+    <!-- <DefaultWrapper> -->
+    <div class="control-icons" v-if="this.dataSource" :key="refreshKey">
+        <!-- <i class="bi bi-toggles2 column-button" @click="toggleSideboard"></i> -->
+        <table class="table">
+            <tr style="border: solid 2px black;" >
+                <th class="table-header" v-for="(columns, index) in this.tableHeaders" :key="index" >{{ columns }}</th>
+            </tr>
+            <tr class="table-data-row"  v-for="(items, index) in this.data" :key="index" style="solid 1px black;" @click="showRowDetails(items)">
+                <td class="table-data" v-for="(columnData, index) in items" :key="index" >{{ columnData }}</td>
+            </tr>
+        </table>
     </div>
-    </DefaultWrapper>
+    <!-- </DefaultWrapper> -->
   </div>
 </template>
 
 <script>
-import DefaultWrapper from '@/components/DefaultWrapper.vue'
+// import DefaultWrapper from '@/components/DefaultWrapper.vue'
 import {v4 as uuidv4} from 'uuid'
-import DataTableComponent from './DataTableComponent.vue'
 
 export default {
     components: {
-        DefaultWrapper,
-        DataTableComponent,
+        // DefaultWrapper,
         
     },
     props: {
@@ -37,18 +37,32 @@ export default {
     },
     data(){
         return {
-            tableRows: null,
-            tabledata: null,
             customerHeaders: null,
-            sideBoard: false,
             refreshKey: uuidv4(),
+            data: [],
+
         }
     },
     async mounted(){
-        this.tableRows = Object.keys(this.dataSource)
-        this.tableData = Object.values(this.dataSource)
 
-        console.log('tableHeaders', this.tableHeaders)
+        console.log('dataSource', this.dataSource)
+
+        this.dataSource.map((x) => {
+            let tempObject = {}
+
+            tempObject['id'] = x.id
+            tempObject['fName'] = x.fName
+            tempObject['lName'] = x.lName
+            tempObject['phone'] = x.phone
+            tempObject['cellphone'] = x.cellphone
+            tempObject['address'] = x.address
+            tempObject['number'] = x.streetNo
+            tempObject['isActive'] = x.isActive
+            tempObject['email'] = x.email
+
+            this.data.push(tempObject)
+            this.refreshKey = uuidv4()
+        })
         
     },
     methods: {
@@ -71,9 +85,16 @@ export default {
 
 <style scoped>
 .container {
-    display:flex;
-
+    margin: auto;
+    /* overflow-x: auto; */
 }
+.table {
+    margin: auto;
+    border:solid;
+    max-width:100%;
+    overflow: hidden;
+}
+
 .table-header {
     border:solid 2px black;
     padding: 0.5em;
@@ -117,4 +138,17 @@ export default {
     margin:1em;
     cursor:pointer;
 }
+
+@media (max-width: 1000px){
+    .table {
+        font-size: 10px;
+    }
+
+    .container {
+        overflow-x: auto;
+        width:100vw;
+        margin:0.3em;
+    }
+}
+
 </style>

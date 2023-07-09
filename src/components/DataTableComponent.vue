@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="this.dataSource">
         <table style="margin: auto; border:solid; width:100%;">
             <tr style="border: solid 2px black;" >
                 <th class="table-header" v-for="(columns, index) in this.headers" :key="index" >{{ columns }}</th>

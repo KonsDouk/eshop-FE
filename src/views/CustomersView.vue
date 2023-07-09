@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <div class="container">
         <TableComponent
-        :dataSource="dataSource"
-        :tableHeaders="customerHeaders"
+            v-if="this.dataSource.length > 0"
+            :dataSource="dataSource"
+            :tableHeaders="customerHeaders"
         >
         </TableComponent>
     </div>
@@ -18,16 +19,16 @@ export default {
     },
     data(){
         return {
-            dataSource: {},
-            customerHeaders: ['ID', 'Όνομα', 'Επώνυμο', 'Email', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive'],
+            dataSource: [],
+            customerHeaders: ['ID', 'Όνομα', 'Επώνυμο', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive', 'Email'],
         }
     },
 
     async mounted(){
         await axios.get('/api/customers')
         .then((response) => {
-            this.dataSource = response
-            console.log('datasource', this.dataSource)
+            this.dataSource = response.data
+            // console.log('datasource', this.dataSource)
         })
     }
 
@@ -35,5 +36,8 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+    margin: auto;
+    /* border:solid 1px blue; */
+}
 </style>
