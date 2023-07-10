@@ -16,6 +16,11 @@
         >
 
         </ProductCard>
+
+        <CustomerDetails
+        >
+          
+        </CustomerDetails>
     </div>
   </DefaultWrapper>
 </template>
@@ -25,6 +30,7 @@ import ProductLandingPage from '@/components/ProductLandingPage.vue';
 import DefaultWrapper from '../components/DefaultWrapper.vue'
 import TableComponent from '../components/TableComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
+import CustomerDetails from '../components/CustomerDetails.vue'
 import {v4 as uuidv4} from 'uuid'
 // import axios from 'axios'
 export default {
@@ -33,6 +39,7 @@ export default {
     DefaultWrapper,
     TableComponent,
     ProductCard,
+    CustomerDetails,
   },
 
   data(){

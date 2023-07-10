@@ -4,6 +4,7 @@ import WriteNewComponent from '../components/WriteNewComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
 import ProductLandingPage from '../components/ProductLandingPage.vue'
 import CustomersView from '../views/CustomersView.vue'
+import CustomerDetails from '../components/CustomerDetails.vue'
 
 const routes = [
   {
@@ -43,6 +44,12 @@ const routes = [
     path: '/customers',
     name: 'customers',
     component: CustomersView
+  },
+
+  {
+    path: '/customer-details',
+    name: 'customer_details',
+    component: CustomerDetails
   },
 
 
