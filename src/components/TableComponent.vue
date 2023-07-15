@@ -66,9 +66,10 @@ export default {
         
     },
     methods: {
-        showRowDetails(x){
+        showRowDetails(data){
             //Θα πηγαίνει σε νέα σελίδα που θα δείχνει λεπτομέρειες για το επιλεγμένο στοιχείο
-            x
+            this.$router.push({name: 'customer_details', params: {id: data.id}})
+            // console.log("tableComponent", data)
         },
         toggleSideboard(){
             this.sideBoard = !this.sideBoard

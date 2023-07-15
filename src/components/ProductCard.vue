@@ -9,7 +9,7 @@
             <p class="unavailable" v-if="this.productData.availableQty <= 5">Κατόπιν παραγγελίας</p>
         </div>
         <div class="btns">
-            <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" @click="addToWishList"><i class="bi bi-card-checklist"></i></button></span>
+            <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" @click="addToWishList"><i class="bi bi-heart"></i></button></span>
             <span style="margin: 0 2em;"> <button type="button" class="btn btn-success" @click="addToCart"><i class="bi bi-cart-plus"></i></button></span>
         </div>
     </div>
