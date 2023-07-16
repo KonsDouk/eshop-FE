@@ -2,7 +2,7 @@
     <div class="container">
         <TableComponent
             v-if="this.dataSource.length > 0"
-            :dataSource="dataSource"
+            :dataSource="data"
             :tableHeaders="customerHeaders"
         >
         </TableComponent>
@@ -20,7 +20,8 @@ export default {
     data(){
         return {
             dataSource: [],
-            customerHeaders: ['ID', 'Όνομα', 'Επώνυμο', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive', 'Email'],
+            customerHeaders: ['ID', 'Name', 'Surname', 'Phone', 'Cellphone', 'Adress', 'Number', 'IsActive', 'Email'],
+            data: [],
         }
     },
 
@@ -28,7 +29,25 @@ export default {
         await axios.get('/api/customers')
         .then((response) => {
             this.dataSource = response.data
-            // console.log('datasource', this.dataSource)
+            
+            console.log('datasourceee', this.dataSource)
+        })
+
+        this.dataSource.map((x) => {
+            let tempObject = {}
+
+            tempObject['id'] = x.id
+            tempObject['fName'] = x.fName
+            tempObject['lName'] = x.lName
+            tempObject['phone'] = x.phone
+            tempObject['cellphone'] = x.cellphone
+            tempObject['address'] = x.address
+            tempObject['number'] = x.streetNo
+            tempObject['isActive'] = x.isActive
+            tempObject['email'] = x.email
+
+            this.data.push(tempObject)
+            // this.refreshKey = uuidv4()
         })
     }
 

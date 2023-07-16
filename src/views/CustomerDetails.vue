@@ -35,7 +35,9 @@
         </div>
         <div class="user-orders">
             <TableComponent
-                
+                v-if="this.user_orders"
+                :tableHeaders="['Items', 'Address', 'Price', 'State']"
+                :dataSource="order_data"
             >
             </TableComponent>
         </div>
@@ -56,6 +58,8 @@ export default {
     data(){
         return {
             data: null,
+            user_orders: null,
+            order_data: [],
         }
     },
     async mounted(){
@@ -63,7 +67,19 @@ export default {
         await axios.get('/api/selectedCustomer/'+this.id )
         .then((response) => {
             this.data = response.data
+            this.user_orders = this.data.user_orders
             console.log('this.data', this.data)
+        })
+
+        this.user_orders.map((x) => {
+            let tempObject = {}
+
+            tempObject['items'] = JSON.parse(x.items)
+            tempObject['address'] = x.delivery_address
+            tempObject['total_price'] = x.total_price
+            tempObject['state'] = x.state
+
+            this.order_data.push(tempObject)
         })
     }
 
@@ -86,5 +102,9 @@ export default {
     width:33vw;
     /* display:block; */
     text-align: center;
+}
+
+.user-orders {
+    margin: 1em;
 }
 </style>

@@ -7,7 +7,7 @@
             <tr style="border: solid 2px black;" >
                 <th class="table-header" v-for="(columns, index) in this.tableHeaders" :key="index" >{{ columns }}</th>
             </tr>
-            <tr class="table-data-row"  v-for="(items, index) in this.data" :key="index" style="solid 1px black;" @click="showRowDetails(items)">
+            <tr class="table-data-row"  v-for="(items, index) in this.dataSource" :key="index" style="solid 1px black;" @click="showRowDetails(items)">
                 <td class="table-data" v-for="(columnData, index) in items" :key="index" >{{ columnData }}</td>
             </tr>
         </table>
@@ -46,6 +46,7 @@ export default {
     async mounted(){
 
         console.log('dataSource', this.dataSource)
+        
 
         this.dataSource.map((x) => {
             let tempObject = {}
