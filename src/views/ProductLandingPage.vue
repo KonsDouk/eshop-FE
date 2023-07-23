@@ -1,5 +1,5 @@
 <template>
-    <div><!-- Το div πρέπει να τα περιέχει όλα -->
+    <div v-if="product"><!-- Το div πρέπει να τα περιέχει όλα -->
         <!-- <div class="product-title">
             <h3>{{ this.productObject.productName }}</h3>
         </div> -->
@@ -7,19 +7,19 @@
         <div class="product-order-container">
             <div>
                 <div class="product-img">
-                    <img class="img" :src="require(`../../public/images/${this.showSelectedImage}.jpg`)" alt="test product">
+                    <img class="img" :src="`http://localhost:80/${product.product_photos[0].src}`" :alt="product.product_photos[0].alt">
                 </div>
-                <div class="more-imgs">
+                <div class="more-imgs" v-if="product.product_photos.length > 1">
                     <img class="smaller-imgs" v-for="(image, index) in productImages" :key='index' :src="require(`../../public/images/${image}.jpg`)" alt="" @click="changeMainImage(image)">
                 </div>
             </div>
 
             <div class="order-btns">
                 <div class="price">
-                    <p>{{  this.productObject.productPrice}} €</p>
+                    <p>{{ product.price }} €</p>
                 </div>
                 <div class="product-availability">
-                    <div v-if="this.productObject.availableQty >0"><span  ><i class="bi bi-check-lg"></i></span> <span>{{ this.productAvailabilty }}</span></div>
+                    <div v-if="product.quantity >0"><span  ><i class="bi bi-check-lg"></i></span> <span>{{ this.productAvailabilty }}</span></div>
                     <div v-else><span><i class="bi bi-x-lg"></i></span> <span>{{ this.productAvailabilty }}</span></div>
                 </div>
 
@@ -44,48 +44,50 @@
             <span class="tabs" @click="showDescription"><button>Περιγραφή</button></span>
             <span class="tabs" @click="showCharacteristics"><button>Χαρακτηριστικά</button></span>
             <div class="product-description-text" v-if="this.descriptionFlag">
-                <p>{{ this.productObject.productDescription }}</p>
+                <p>{{ product.description }}</p>
             </div>
 
-            <div class="characteristics" v-if="this.characteristicsFlag">
+            <!-- <div class="characteristics" v-if="this.characteristicsFlag">
                 <p>{{ this.productObject.productCharacteristics }}</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
     components: {
         
     },
     props: {
-        productObject: {
+        id: {
             required: true,
-            type: Object,
+            type: Number
         },
-        //Οι εικόνες θα είναι αποθηκευμένες στην βάση ως string με μορφή productId_img1|productId_img2|productId_img3... και θα παίρνει την εικόνα από τον φάκελο public/images
-        productImages: {
-            required: false,
-            type: Array,
-        }
     },
     data(){
         return {
-            productQuantity: 5,
+            productQuantity: null,
             showSelectedImage: /*this.productObject.productId +*/ '1_img1',
             descriptionFlag : true,
             characteristicsFlag: false,
             productAvailabilty: null,
             availabilityIcon: null,
+            product: null,
 
         }
     },
-    mounted(){
-        // console.log('productObject', this.productObject)
-        // console.log('productImages', this.productImages)
-        if (this.productObject.availableQty > 0){
+    async mounted(){
+        await axios.get('/api/product/'+this.id)
+        .then((response) => {
+            this.product = response.data
+            this.productQuantity = response.data.quantity
+            console.log('responseeee', response)
+        })
+        console.log('product', this.product)
+        if (this.product.quantity > 0){
             this.availabilityIcon = `<i class="bi bi-check-lg"></i>`
             this.productAvailabilty = 'Άμεσα διαθέσιμο'
         }

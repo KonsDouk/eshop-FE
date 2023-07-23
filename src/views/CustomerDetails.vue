@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="user-info">
             <form class="form" v-if="this.data">
                 <label for="fName">First Name</label>
@@ -60,6 +60,7 @@ export default {
             data: null,
             user_orders: null,
             order_data: [],
+            photos: [],
         }
     },
     async mounted(){
@@ -87,8 +88,8 @@ export default {
 </script>
 
 <style scoped>
-.form {
-
+.container {
+    display:flex;
 }
 
 .form > label {

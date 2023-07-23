@@ -1,8 +1,15 @@
 <template>
   <div class="container">
-    <div class="home" v-for="(products, index) in this.product" :key="index">
+    <div class="home" v-for="(products, index) in this.products" :key="index">
       <ProductCard
         :productData="products"
+        :name="products.name"
+        :price="products.price"
+        :description="products.description"
+        :quantity="products.quantity"
+        :mainPhoto="products.product_photos[0]"
+        :photos="products.product_photos"
+        :id="products.id"
       >
       </ProductCard>
 
@@ -18,7 +25,8 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import ProductCard from '../components/ProductCard.vue'
-// import axios from 'axios'
+import axios from 'axios'
+
 export default {
   name: 'HomeView',
   components: {
@@ -27,62 +35,16 @@ export default {
   },
   data(){
     return {
-      product: [
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img1',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img2',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img3',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img4',
-        },
-        {
-          productCategory: 5,
-          productId: 26,
-          productName: 'Alienware XTreme Hardcore Tryhard Terminator 9000',
-          productPrice: 15000,
-          availableQty: 100,
-          productDescription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a quaerat facilis numquam temporibus vitae molestias assumenda quis natus, animi, modi autem ut nulla expedita hic voluptas nam, odio reprehenderit consequatur earum quas tenetur nostrum necessitatibus sequi. Nesciunt temporibus distinctio soluta nam est placeat ducimus! Animi repellat velit harum dolorum?',
-          productCharacteristics: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, distinctio!',
-          img: '1_img1',
-        },
-    
-      ],
+      products: null,
+
     }
   },
   async mounted(){
+    await axios.get('/api/products')
+    .then((response) => {
+      this.products = response.data
+    })
+    console.log('products', this.products)
     // let x = axios.get('/api/customers')
     
   },

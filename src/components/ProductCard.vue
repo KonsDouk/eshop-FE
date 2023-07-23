@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="product-image" @click="goToLandingPage">
-            <img :src="require(`../../public/images/${this.productData.img}.jpg`)" alt="product-image">
+            <img :src="`http://localhost:80/${this.mainPhoto.src}`" :alt="mainPhoto.alt">
         </div>
         <div class="price" @click="goToLandingPage">
-            Τιμή: {{ this.productData.productPrice }}€
-            <p class="available" v-if="this.productData.availableQty > 5">Διαθέσιμο για παραγγελία</p>
-            <p class="unavailable" v-if="this.productData.availableQty <= 5">Κατόπιν παραγγελίας</p>
+            Τιμή: {{ this.price }}€
+            <p class="available" v-if="quantity > 5">Διαθέσιμο για παραγγελία</p>
+            <p class="unavailable" v-if="quantity <= 5">Κατόπιν παραγγελίας</p>
         </div>
         <div class="btns">
             <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" @click="addToWishList"><i class="bi bi-heart"></i></button></span>
@@ -18,10 +18,40 @@
 <script>
 export default {
     props: {
-        productData: {
+        // productData: {
+        //     required: true,
+        //     type: Object,
+        // },
+        id: {
             required: true,
-            type: Object,
+            type: String
+        },
+        name: {
+            required: true,
+            type: String
+        },
+        price: {
+            required: false,
+            type: String
+        },
+        description: {
+            required: false,
+            type: String
+        },
+        quantity: {
+            required: false,
+            type: String
+        },
+        mainPhoto: {
+            required: false,
+            type: String
+        },
+        photos: {
+            required: false,
+            type: String
         }
+
+
     },
 
     data(){
@@ -30,12 +60,11 @@ export default {
     },
 
     mounted(){
-        // console.log("sdfsdf", this.productData)
+        // console.log()
     },
     methods: {
         goToLandingPage(){
-            
-            this.$router.push('product_landing_page', this.productData.productId)
+            this.$router.push({name: 'product_landing_page', params: {id: this.id}})
         },
         addToWishList(){
             

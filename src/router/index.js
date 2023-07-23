@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import WriteNewComponent from '../components/WriteNewComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
-import ProductLandingPage from '../components/ProductLandingPage.vue'
+import ProductLandingPage from '../views/ProductLandingPage.vue'
 import CustomersView from '../views/CustomersView.vue'
 import CustomerDetails from '../views/CustomerDetails.vue'
+import LoginPage from '../views/LoginPage.vue'
 
 const routes = [
   {
@@ -35,9 +36,10 @@ const routes = [
   },
 
   {
-    path: '/product-landing-page',
+    path: '/product-landing-page/:id',
     name: 'product_landing_page',
-    component: ProductLandingPage
+    component: ProductLandingPage,
+    props: true
   },
   
   {
@@ -51,6 +53,12 @@ const routes = [
     name: 'customer_details',
     component: CustomerDetails,
     props: true
+  },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPage,
   },
 
 

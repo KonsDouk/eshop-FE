@@ -4,10 +4,10 @@
   >
     <div>
         <img v-if="this.photo" :key="this.refreshKey" :src="this.photo" alt="test">
-        <ProductLandingPage
+        <!-- <ProductLandingPage
         :productObject="product"
         :productImages="productImages"
-        />
+        /> -->
         <TableComponent
           :dataSource="customers"
         />
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ProductLandingPage from '@/components/ProductLandingPage.vue';
+// import ProductLandingPage from '@/views/ProductLandingPage.vue';
 import DefaultWrapper from '../components/DefaultWrapper.vue'
 import TableComponent from '../components/TableComponent.vue'
 import ProductCard from '../components/ProductCard.vue'
@@ -35,7 +35,7 @@ import {v4 as uuidv4} from 'uuid'
 // import axios from 'axios'
 export default {
   components: {
-    ProductLandingPage,
+    // ProductLandingPage,
     DefaultWrapper,
     TableComponent,
     ProductCard,
