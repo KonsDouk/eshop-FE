@@ -3,10 +3,10 @@
         <h2 class="welcome-message">Welcome to our Eshop!</h2>
         <div class="form-group form">
             <label for="username">Username</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            <input v-model="this.email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
 
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <input v-model="this.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
 
             <button type="button" class="btn btn-primary submit-btn" @click="attemptLogin">Submit</button>
         </div>
@@ -14,10 +14,21 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+    data(){
+        return {
+            email: 'kopap@gmail.com',
+            password: 'password1',
+        }
+    },
     methods: {
-        attemptLogin(){
-            console.log("Hello")
+        async attemptLogin(){
+            await axios.post('/api/customerAuthentication', {email: this.email, password: this.password})
+            .then((response) => {
+                console.log("response", response)
+            })
         }
     }
 }
