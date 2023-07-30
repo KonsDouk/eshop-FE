@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         async attemptLogin(){
-            await axios.post('/api/customerAuthentication', {email: this.email, password: this.password})
+            await axios.post('/api/customerLogin', {email: this.email, password: this.password})
             .then((response) => {
                 console.log("response", response)
             })
