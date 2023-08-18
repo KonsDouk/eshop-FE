@@ -7,8 +7,10 @@
 
             <label for="password">Password</label>
             <input v-model="this.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-
-            <button type="button" class="btn btn-primary submit-btn" @click="attemptLogin">Submit</button>
+            <div class="buttons">
+                <button type="button" class="btn btn-primary submit-btn" @click="login">Login</button>
+                <button type="button" class="btn btn-primary submit-btn" @click="logout">Logout</button>
+            </div>
         </div>
     </div>
 </template>
@@ -23,11 +25,27 @@ export default {
             password: 'password1',
         }
     },
+    mounted(){
+        
+    },
     methods: {
-        async attemptLogin(){
-            await axios.post('/api/customerLogin', {email: this.email, password: this.password})
-            .then((response) => {
-                console.log("response", response)
+        async login(){
+            let credentials = {}
+            credentials.email = this.email
+            credentials.password = this.password
+
+            await axios.post('/api/login', credentials)
+            .then((response)=> {
+                localStorage.setItem('authToken', response.data.token)
+                console.log('response', response)
+            })
+        },
+
+        async logout(){
+            const headers = {'Authorization': `Bearer ${localStorage.getItem('authToken')}`}
+            await axios.post('/api/logout', null, {headers})
+            .then(() => {
+                localStorage.setItem('authToken', null)
             })
         }
     }
@@ -44,6 +62,11 @@ export default {
 }
 .submit-btn {
     margin: 1em;
+}
+
+.buttons {
+    display:flex;
+    justify-content: center;;
 }
 
 </style>

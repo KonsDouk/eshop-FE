@@ -4,9 +4,11 @@
     <div>
       <router-link to="/about">About</router-link> |
       <router-link to="/product-card">Test</router-link> |
-      <router-link to="/customers">Customers</router-link>
+      <router-link to="/customers">Customers</router-link> |
+      <router-link to="/login">Login</router-link> |
+
     </div>
-    <router-link to="/user-profile">Profile</router-link>
+    <router-link to="/my-profile">Profile</router-link>
     
   </nav>
   <div class="page">
