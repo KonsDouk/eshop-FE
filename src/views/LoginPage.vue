@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <h2 class="welcome-message">Welcome to our Eshop!</h2>
         <div class="form-group form">
             <label for="username">Username</label>
@@ -10,6 +10,9 @@
             <div class="buttons">
                 <button type="button" class="btn btn-primary submit-btn" @click="login">Login</button>
                 <button type="button" class="btn btn-primary submit-btn" @click="logout">Logout</button>
+            </div>
+            <div v-if="invalidCredentials" class="error-message">
+                <p>The username or password you provided is wrong</p>
             </div>
         </div>
     </div>
@@ -23,13 +26,16 @@ export default {
         return {
             email: 'kopap@gmail.com',
             password: 'password1',
+            invalidCredentials: false,
+
         }
     },
-    mounted(){
+    async mounted(){
         
     },
     methods: {
         async login(){
+            this.invalidCredentials = false
             let credentials = {}
             credentials.email = this.email
             credentials.password = this.password
@@ -37,17 +43,19 @@ export default {
             await axios.post('/api/login', credentials)
             .then((response)=> {
                 localStorage.setItem('authToken', response.data.token)
-                console.log('response', response)
+                location.reload()
+            })
+            .catch(() => {
+                this.invalidCredentials = true
+                localStorage.setItem('authToken', null)
+                
             })
         },
 
         async logout(){
-            const headers = {'Authorization': `Bearer ${localStorage.getItem('authToken')}`}
-            await axios.post('/api/logout', null, {headers})
-            .then(() => {
-                localStorage.setItem('authToken', null)
-            })
-        }
+            this.$store.dispatch('logout')
+        },
+
     }
 }
 </script>
@@ -67,6 +75,10 @@ export default {
 .buttons {
     display:flex;
     justify-content: center;;
+}
+
+.error-message {
+    color:red;
 }
 
 </style>

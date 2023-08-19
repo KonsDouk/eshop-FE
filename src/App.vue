@@ -8,14 +8,35 @@
       <router-link to="/login">Login</router-link> |
 
     </div>
-    <router-link to="/my-profile">Profile</router-link>
+    <!-- <router-link to="/my-profile">Profile</router-link> -->
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Profile
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">My Profile</a>
+        <a class="dropdown-item" href="#">Logout</a>
+      </div>
+    </div>
     
   </nav>
+
+
   <div class="page">
     <router-view/>
 
   </div>
 </template>
+
+<script>
+
+export default {
+  components: {
+    
+  }
+}
+</script>
 
 <style>
 #app {
