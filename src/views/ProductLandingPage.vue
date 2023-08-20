@@ -84,9 +84,7 @@ export default {
         .then((response) => {
             this.product = response.data
             this.productQuantity = response.data.quantity
-            console.log('responseeee', response)
         })
-        console.log('product', this.product)
         if (this.product.quantity > 0){
             this.availabilityIcon = `<i class="bi bi-check-lg"></i>`
             this.productAvailabilty = 'Άμεσα διαθέσιμο'

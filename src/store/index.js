@@ -10,13 +10,13 @@ export default createStore({
   },
   actions: {
     async logout(){
+      // this.$router.push({name: 'home'})
       await axios.post('/api/logout')
       .then(() => {
         localStorage.setItem('authToken', null)
         location.reload()
       })
-      .catch((e) => {
-        console.log('logout error', e)
+      .catch(() => {
       })
     }
   },

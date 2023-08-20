@@ -9,7 +9,6 @@
             <input v-model="this.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
             <div class="buttons">
                 <button type="button" class="btn btn-primary submit-btn" @click="login">Login</button>
-                <button type="button" class="btn btn-primary submit-btn" @click="logout">Logout</button>
             </div>
             <div v-if="invalidCredentials" class="error-message">
                 <p>The username or password you provided is wrong</p>
@@ -49,11 +48,8 @@ export default {
                 this.invalidCredentials = true
                 localStorage.setItem('authToken', null)
                 
+                
             })
-        },
-
-        async logout(){
-            this.$store.dispatch('logout')
         },
 
     }

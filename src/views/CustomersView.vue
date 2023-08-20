@@ -29,16 +29,17 @@ export default {
         await axios.get('/api/customers')
         .then((response) => {
             this.dataSource = response.data
-            
-            console.log('datasourceee', this.dataSource)
+        })
+        .catch(() => {
+            this.$router.push('/')
         })
 
         this.dataSource.map((x) => {
             let tempObject = {}
-
+            
             tempObject['id'] = x.id
-            tempObject['fName'] = x.fName
-            tempObject['lName'] = x.lName
+            tempObject['fName'] = x.name
+            tempObject['lName'] = x.name
             tempObject['phone'] = x.phone
             tempObject['cellphone'] = x.cellphone
             tempObject['address'] = x.address

@@ -7,6 +7,7 @@ import CustomersView from '../views/CustomersView.vue'
 import CustomerDetails from '../views/CustomerDetails.vue'
 import LoginPage from '../views/LoginPage.vue'
 import MyProfile from '../views/MyProfile.vue'
+import TestView from '../views/TestView.vue'
 
 const routes = [
   {
@@ -66,6 +67,12 @@ const routes = [
     path: '/my-profile',
     name: 'my_profile',
     component: MyProfile,
+  },
+
+  {
+    path: '/test-view',
+    name: 'test_view',
+    component: TestView,
   },
 
 ]

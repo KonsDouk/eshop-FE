@@ -44,8 +44,6 @@ export default {
     .then((response) => {
       this.products = response.data
     })
-    console.log('products', this.products)
-    // let x = axios.get('/api/customers')
     
   },
   methods: {

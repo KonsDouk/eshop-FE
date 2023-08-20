@@ -133,17 +133,12 @@ export default {
 
   async mounted(){
     // let x = await axios.get('/api/customers')
-    // console.log("x orders", x)
 
     // let y = await axios.get('/api/products')
-    // console.log('y products', y )
 
     // await axios.get('/api/products_photos')
     // .then((response) => {
     //   this.photo = 'localhost:80/' +response.data[0].src
-    //   console.log("response", response)
-    //   console.log("this.photo", this.photo)
-    //   console.log('z photos', response)
     //   this.refreshKey = uuidv4()
     // })
 

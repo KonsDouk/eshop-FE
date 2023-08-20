@@ -1,25 +1,21 @@
-<template>
+<template :key="refreshKey">
   <nav class="nav-bar">
       <router-link to="/">Home</router-link>
     <div>
       <router-link to="/about">About</router-link> |
       <router-link to="/product-card">Test</router-link> |
       <router-link to="/customers">Customers</router-link> |
-      <router-link to="/login">Login</router-link> |
+      <router-link to="/test-view">Test View</router-link>
+      
 
     </div>
-    <!-- <router-link to="/my-profile">Profile</router-link> -->
-
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Profile
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">My Profile</a>
-        <a class="dropdown-item" href="#">Logout</a>
-      </div>
+    <div v-if="this.checkIfNull(this.authToken)">
+      <button type="button" class="btn btn-success" @click="redirectToLogin">Login</button>
     </div>
-    
+    <div v-else>
+      <button type="button" class="btn btn-danger" @click="logout">Logout</button>
+    </div>
+
   </nav>
 
 
@@ -30,11 +26,34 @@
 </template>
 
 <script>
+import {v4 as uuidv4} from 'uuid'
 
 export default {
   components: {
     
+  },
+  data(){
+    return {
+      authToken: null,
+      refreshKey: uuidv4(),
+    }
+  },
+  mounted(){
+    this.authToken = localStorage.getItem('authToken')
+    console.log(this.authToken)
+  },
+  methods: {
+    redirectToLogin(){
+      this.$router.push('login')
+    },
+    logout(){
+      this.$store.dispatch('logout')
+    },
+    checkIfNull(x){
+      return x == null || x === 'null'
+    }
   }
+
 }
 </script>
 

@@ -13,7 +13,6 @@ self.axios = axios
 //Sets the bearer token by default in every call
 if (localStorage.getItem('authToken')){
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('authToken')}`
-    console.log('main', localStorage.getItem('authToken'))
 }
 
 createApp(App).use(bootstrap).use(store).use(router).mount('#app')

@@ -44,8 +44,6 @@ export default {
         }
     },
     async mounted(){
-
-        console.log('dataSource', this.dataSource)
         
 
         this.dataSource.map((x) => {
@@ -70,7 +68,6 @@ export default {
         showRowDetails(data){
             //Θα πηγαίνει σε νέα σελίδα που θα δείχνει λεπτομέρειες για το επιλεγμένο στοιχείο
             this.$router.push({name: 'customer_details', params: {id: data.id}})
-            // console.log("tableComponent", data)
         },
         toggleSideboard(){
             this.sideBoard = !this.sideBoard
