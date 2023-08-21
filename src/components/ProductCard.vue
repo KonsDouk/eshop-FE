@@ -12,6 +12,8 @@
             <span style="margin: 0 2em;"><button type="button" class="btn btn-primary" @click="addToWishList"><i class="bi bi-heart"></i></button></span>
             <span style="margin: 0 2em;"> <button type="button" class="btn btn-success" @click="addToCart"><i class="bi bi-cart-plus"></i></button></span>
         </div>
+
+        
     </div>
 </template>
 
@@ -56,6 +58,7 @@ export default {
 
     data(){
         return {
+            
         }
     },
 
@@ -66,7 +69,7 @@ export default {
             this.$router.push({name: 'product_landing_page', params: {id: this.id}})
         },
         addToWishList(){
-            
+            this.$emit('showModal')
         },
         addToCart(){
             
